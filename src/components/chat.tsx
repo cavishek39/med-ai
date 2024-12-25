@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardContent } from './ui/card'
+import { Card, CardContent } from './ui/card'
 import { Message, useChat } from 'ai/react'
 
 const Chat = ({ reportData }: { reportData: string }) => {

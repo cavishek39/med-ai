@@ -1,6 +1,5 @@
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import fs from 'fs'
 import { Pinecone } from '@pinecone-database/pinecone'
 
 export function cn(...inputs: ClassValue[]) {

@@ -6,7 +6,7 @@ The response should be written in a professional tone and should be easy to unde
 And return the result as a markdown text response. 
 `
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
     const { data: base64 } = await req.json()
     // console.log('base64 => ', base64)

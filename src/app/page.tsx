@@ -1,11 +1,9 @@
 'use client'
 
-import { ChangeEventHandler, useState } from 'react'
+import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import Chat from '@/components/chat'
-import { useTheme } from 'next-themes'
 import { ModeToggle } from '@/components/toggle-theme'
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useToast } from '@/hooks/use-toast'
 import { compressImage } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -17,7 +15,7 @@ export default function Home() {
   const [base64FileData, setBase64Data] = useState<File | string>()
   const [summary, setSummary] = useState('')
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = (event: any) => {
     const uploadedFile = event?.target?.files[0]
 
     if (!uploadedFile) return
@@ -60,7 +58,7 @@ export default function Home() {
         // Process the file and generate summary
         const reader = new FileReader()
 
-        reader.onload = (e) => {
+        reader.onload = () => {
           const text = reader.result as string
           // console.log(text)
           setBase64Data(text)
