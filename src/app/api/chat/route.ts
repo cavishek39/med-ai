@@ -1,6 +1,4 @@
 import { streamText } from 'ai'
-import { Pinecone } from '@pinecone-database/pinecone'
-import { queryPineconeVectorStore } from '@/lib/utils'
 import { createGoogleGenerativeAI } from '@ai-sdk/google'
 
 // Allow streaming responses up to 30 seconds
