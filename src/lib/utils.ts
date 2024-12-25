@@ -26,9 +26,9 @@ export function compressImage(
       // Draw the image on the canvas
       const ctx = elem.getContext('2d')
       // Draw the image on the canvas
-      ctx.drawImage(img, 0, 0, width, img.height * scaleFactor)
+      ctx?.drawImage(img, 0, 0, width, img.height * scaleFactor)
       // Convert the canvas to a blob
-      ctx.canvas.toBlob(
+      ctx?.canvas.toBlob(
         (blob) => {
           const compressedFile = new File([blob], file.name, {
             type: 'image/jpeg',
@@ -40,7 +40,7 @@ export function compressImage(
         quality // Use the quality parameter
       )
     }
-    img.src = e.target.result as string
+    img.src = e?.target?.result as string
   }
   reader.readAsDataURL(file)
 }
