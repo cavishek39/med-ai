@@ -19,7 +19,10 @@ export async function POST(req: Request) {
 
     // console.log('filePart => ', filePart)
 
-    const generatedContent = await model.generateContent([prompt, filePart])
+    const generatedContent = await model.generateContent([
+      prompt,
+      filePart as any,
+    ])
 
     // console.log(generatedContent.response.text())
 

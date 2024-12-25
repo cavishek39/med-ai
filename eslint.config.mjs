@@ -11,12 +11,12 @@ const eslintConfig = [
     rules: {
       'react/no-unescaped-entities': 'off',
       '@next/next/no-page-custom-font': 'off',
-      'no-console': 'warn',
       'no-unused-vars': 'off',
-      'no-undef': 'off',
       'no-constant-condition': 'off',
       'no-explicit-any': 'off',
     },
+    ignorePatterns: ['node_modules/', 'dist/'],
+    plugins: ['@typescript-eslint'],
   }),
 ]
 
