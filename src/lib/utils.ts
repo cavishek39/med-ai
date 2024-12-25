@@ -30,11 +30,15 @@ export function compressImage(
       // Convert the canvas to a blob
       ctx?.canvas.toBlob(
         (blob) => {
-          const compressedFile = new File([blob], file.name, {
-            type: 'image/jpeg',
-            lastModified: Date.now(),
-          })
-          callback(compressedFile)
+          if (blob) {
+            const compressedFile = new File([blob], file.name, {
+              type: 'image/jpeg',
+              lastModified: Date.now(),
+            })
+            callback(compressedFile)
+          } else {
+            console.error('Blob is null')
+          }
         },
         'image/jpeg',
         quality // Use the quality parameter
