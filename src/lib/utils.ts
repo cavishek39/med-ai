@@ -1,10 +1,16 @@
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { Pinecone } from '@pinecone-database/pinecone'
+import { HfInference } from '@huggingface/inference'
+import { HUGGING_FACE_MODEL } from '@/constants'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+const HF_TOKEN = process.env.HUGGING_FACE_TOKEN
+
+const inference = new HfInference(HF_TOKEN)
 
 export function compressImage(
   file: File,
@@ -71,11 +77,50 @@ export function fileToGenerativePart(imageData: string) {
   }
 }
 
-export async function queryPineconeVectorStore({}: {
+export async function queryPineconeVectorStore({
+  client,
+  query,
+  indexName,
+  searchQuery,
+  namespace,
+}: {
   client: Pinecone
   query: string
   indexName: string
   searchQuery: string
+  namespace: string
 }): Promise<string> {
-  return ''
+  const hfOutput = await inference.featureExtraction({
+    model: HUGGING_FACE_MODEL,
+    inputs: searchQuery,
+  })
+
+  // console.log({ hfOutput })
+
+  const queryEmbeddings = Array.from(hfOutput)
+
+  const index = client.index(indexName)
+
+  const queryResponse = await index.namespace(namespace).query({
+    vector: queryEmbeddings as number[],
+    topK: 10,
+    includeMetadata: true,
+    includeValues: true,
+  })
+
+  console.log('queryResponse')
+
+  if (queryResponse.matches.length > 0) {
+    const concatRetrievals = queryResponse.matches
+      .map((match, index) => {
+        return `\n Clinical finding ${index + 1}: \n ${match.metadata?.chunk}`
+      })
+      .join('\n\n')
+
+    // console.log({ concatRetrievals })
+
+    return concatRetrievals
+  } else {
+    return 'No results found'
+  }
 }

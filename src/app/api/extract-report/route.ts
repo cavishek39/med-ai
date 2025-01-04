@@ -3,7 +3,7 @@ import { fileToGenerativePart } from '@/lib/utils'
 
 const prompt = `Analyze the attached clinical report. Provide a summary of the patient's condition, including any relevant diagnoses, symptoms, and treatment plans.
 The response should be written in a professional tone and should be easy to understand for a non-medical audience. The summary should be concise and informative. Not more that 200 words.
-And return the result as a markdown text response. 
+And return the result as a markdown text response.  Remove extra spaces from the response.
 `
 
 export async function POST(req: Request) {

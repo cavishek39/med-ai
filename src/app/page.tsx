@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast'
 import { compressImage } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import MDEditor from '@uiw/react-md-editor'
+import rehypeSanitize from 'rehype-sanitize'
 
 export default function Home() {
   const { toast } = useToast()
@@ -126,7 +127,11 @@ export default function Home() {
                   whiteSpace: 'pre-wrap',
                   backgroundColor: 'inherit',
                   color: 'inherit',
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: 15,
+                  fontOpticalSizing: 'auto',
                 }}
+                rehypePlugins={[rehypeSanitize]}
               />
             </div>
           </div>
