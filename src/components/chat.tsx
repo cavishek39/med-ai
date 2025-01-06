@@ -75,15 +75,15 @@ const Chat = ({ reportData }: { reportData: string }) => {
             </div>
           )}
         </div>
-        <div className='flex space-x-2'>
+        <div className='flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 items-center w-full'>
           <Input
             value={input}
             onChange={(e) => {
               setInput(e.target.value)
               handleInputChange(e)
             }}
-            placeholder='Type your message...'
-            className='flex-1 border rounded p-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 overflow-hidden'
+            placeholder='Ask your question...'
+            className='flex-1 border border-gray-300 rounded-lg p-4 h-12 text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 ease-in-out w-full sm:w-auto'
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault() // Prevent newline on Enter
@@ -97,7 +97,7 @@ const Chat = ({ reportData }: { reportData: string }) => {
               handleSubmit()
               setInput('')
             }}
-            className='bg-blue-500 text-white p-2 rounded'>
+            className='bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg shadow-md transition-transform transform hover:scale-105 active:scale-95 w-full sm:w-auto'>
             Send
           </Button>
         </div>
