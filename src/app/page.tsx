@@ -108,12 +108,6 @@ export default function Home() {
 
   return (
     <>
-      <header className='w-full p-4 flex justify-between items-center shadow-md'>
-        <h1 className='text-2xl font-bold'>Med_AI</h1>
-        <div className='flex items-center space-x-4'>
-          <ModeToggle />
-        </div>
-      </header>
       <div className='grid h-[calc(100vh-64px)] w-full grid-cols-1 md:grid-cols-5'>
         <div className='col-span-2 p-6 overflow-y-auto'>
           <div className='flex flex-col space-y-4'>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.4",
+    "@clerk/nextjs": "^6.10.6",
     "@google/generative-ai": "^0.21.0",
     "@huggingface/inference": "^2.8.1",
     "@huggingface/transformers": "^3.2.4",
